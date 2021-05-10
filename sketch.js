@@ -2,7 +2,7 @@ let b;
 function setup() {
   b = new ChessBoard();
   background(0);
-  createCanvas(400, 400);
+  createCanvas(1000, 1000);
 }
 
 function draw() {
