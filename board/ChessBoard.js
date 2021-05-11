@@ -13,9 +13,8 @@ class ChessBoard{
 
   drawBoard(){
     for (var c = 0; c < this.colNum; c++) {
-      for (var r = this.rowNum-1; r >= 0; r--) {
+      for (var r = 0; r < this.rowNum; r++) {
         this.board[c][r].drawSquare();
-        console.log("square");
       }
     }
   }
