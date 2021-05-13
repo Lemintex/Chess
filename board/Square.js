@@ -1,6 +1,6 @@
 class Square{
-  constructor(X, Y, light) {
-    this.size = 50;
+  constructor(X, Y, light, squareSize) {
+    this.size = squareSize;
     this.x = X;
     this.y = Y;
     this.isLight = light;
