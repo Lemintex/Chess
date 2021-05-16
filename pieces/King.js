@@ -1,5 +1,5 @@
 class King extends Piece {
-  constructor(sprite, file, rank, colour, size) {
-    super(sprite, file, rank, colour, size);
+  constructor(sprite, file, rank, colour, size, square) {
+    super(sprite, file, rank, colour, size, square);
   }
 }

@@ -9,15 +9,15 @@ function preload(){
 }
 
 function setup() {
-  board = new ChessBoard(squareSize);
-  pieceController = new PieceController(spriteSheet, squareSize);
+  chessBoard = new ChessBoard(squareSize);
+  pieceController = new PieceController(spriteSheet, squareSize, chessBoard);
   createCanvas(squareSize*8, squareSize*8);
   pieceController.generatePieces();
 }
 
 function draw() {
   background(0);
-  board.drawBoard();
+  chessBoard.drawBoard();
   pieceController.drawPieces();
 }
 

@@ -1,6 +1,7 @@
 class PieceController {
-  constructor(spriteSheet, squareSize) {
+  constructor(spriteSheet, squareSize, chessBoard) {
     this.squareSize = squareSize;
+    this.chessBoard = chessBoard;
     this.spriteSheet = spriteSheet;
     this.pieceSprites = [];
     this.pieceArray = [];
@@ -13,12 +14,12 @@ class PieceController {
   }
 
   generatePieces(){
-      var k = new King(this.pieceSprites[0][0], 4, 2, false, this.squareSize);
+      var k = new King(this.pieceSprites[0][0], 4, 2, false, this.squareSize, this.chessBoard.board[3][1]);
       this.pieceArray.push(k);
-      var p = new Pawn(this.pieceSprites[5][1], 6, 6, true, this.squareSize);
-      this.pieceArray.push(p);
-      var p2 = new Pawn(this.pieceSprites[5][1], 6, 5, true, this.squareSize);
-      this.pieceArray.push(p2);
+      // var p = new Pawn(this.pieceSprites[5][1], 6, 6, true, this.squareSize);
+      // this.pieceArray.push(p);
+      // var p2 = new Pawn(this.pieceSprites[5][1], 6, 5, true, this.squareSize);
+      // this.pieceArray.push(p2);
   }
 
   // generateKing(){
@@ -47,13 +48,15 @@ class PieceController {
   // }
 
   mousePressed(mouseX, mouseY){
-    for (var i = 0; i < this.pieceArray.length; i++) {
-      if (this.pieceArray[i].calculatePiecePickedUp(mouseX, mouseY)) {
-          break;
-        }
-        console.log(i);
-      }
+    var f = Math.floor(mouseX/this.squareSize);
+    var r = Math.floor(mouseY/this.squareSize);
 
+    var pieceOnSquare = this.chessBoard.board[f][r].getPiece();
+    // if (pieceOnSquare == null) {
+    //   return;
+    // }
+    //PIECE PICKED up
+    console.log(pieceOnSquare);
   }
 
   drawPieces(){

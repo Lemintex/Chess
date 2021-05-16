@@ -4,6 +4,7 @@ class Square{
     this.x = X;
     this.y = Y;
     this.isLight = light;
+    this.pieceOnSquare;
   }
 
   drawSquare(){
@@ -14,5 +15,14 @@ class Square{
       fill(40);
     }
     rect(this.x, this.y, this.size, this.size);
+  }
+
+  setPiece(piece){
+    console.log("test");
+    this.pieceOnSquare = piece;
+  }
+
+  getPiece(){
+    return this.pieceOnSquare;
   }
 }
