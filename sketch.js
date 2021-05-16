@@ -1,7 +1,7 @@
-var squareSize = 100;
+var squareSize = 80;
 
 var board;
-var pieceGenerator;
+var pieceController;
 var spriteSheet;
 
 function preload(){
@@ -10,13 +10,21 @@ function preload(){
 
 function setup() {
   board = new ChessBoard(squareSize);
-  pieceGenerator = new PieceController(spriteSheet, squareSize);
+  pieceController = new PieceController(spriteSheet, squareSize);
   createCanvas(squareSize*8, squareSize*8);
-  pieceGenerator.generatePieces();
+  pieceController.generatePieces();
 }
 
 function draw() {
   background(0);
   board.drawBoard();
-  pieceGenerator.drawPieces();
+  pieceController.drawPieces();
+}
+
+function mousePressed(){
+  pieceController.mousePressed(mouseX, mouseY);
+}
+
+function mouseReleased(){
+
 }
