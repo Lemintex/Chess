@@ -1,13 +1,18 @@
 class Piece {
-  constructor(sprite, file, rank, colour, pieceSize, square) {
+  constructor(sprite, file, rank, isWhite, pieceSize, square) {
     this.pieceSize = pieceSize;
-    this.sprite = sprite;
+    if (isWhite) {
+      this.sprite = sprite[0];
+    }
+    else {
+      this.sprite = sprite[1];
+    }
     this.square = square;
     this.pos = {
       file: file,
       rank: rank
     };
-    this.isWhite = colour;
+    this.isWhite = isWhite;
     this.isHeld = false;
     this.square.setPiece(this);
   }

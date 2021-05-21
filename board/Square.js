@@ -18,7 +18,6 @@ class Square{
   }
 
   setPiece(piece){
-    console.log("test");
     this.pieceOnSquare = piece;
   }
 

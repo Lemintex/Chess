@@ -22,10 +22,10 @@ class PieceController {
       // this.pieceArray.push(p2);
   }
 
-  // generateKing(){
-  //     var k = new King(this.pieceSprites[0], 5, 5, false, this.squareSize);
-  //     this.pieceArray.push(k);
-  // }
+  generateKing(file, rank, isWhite){
+      var k = new King(this.pieceSprites[0], file, rank, isWhite, this.squareSize, this.chessBoard.board[file][rank]);
+      this.pieceArray.push(k);
+  }
   //
   // generateQueen(){
   //   var q = new Queen
@@ -35,27 +35,30 @@ class PieceController {
   //   var b = new Bishop
   // }
   //
-  // generateKnight(){
-  //   var n = new Knight(this.pieceSprites[3], 5, 5, false, this.squareSize);
-  // }
-  //
-  // generateRook(){
-  //   var r = new Rook(this.pieceSprites[4], 6, 6, true, this.squareSize);
-  // }
-  //
-  // generatePawn(){
-  //   var p = new Pawn(this.pieceSprites[5], 7, 7, false, this.squareSize);
-  // }
+  generateKnight(file, rank, isWhite){
+    var n = new Knight(this.pieceSprites[3], file, rank, isWhite, this.squareSize, this.chessBoard.board[file][rank]);
+    this.pieceArray.push(n);
+  }
+
+  generateRook(file, rank, isWhite){
+    var r = new Rook(this.pieceSprites[4], file, rank, isWhite, this.squareSize, this.chessBoard.board[file][rank]);
+    this.pieceArray.push(r);
+  }
+
+  generatePawn(file, rank, isWhite){
+    var p = new Pawn(this.pieceSprites[5], file, rank, isWhite, this.squareSize, this.chessBoard.board[file][rank]);
+    this.pieceArray.push(p);
+  }
 
   mousePressed(mouseX, mouseY){
     var f = Math.floor(mouseX/this.squareSize);
     var r = Math.floor(mouseY/this.squareSize);
 
     var pieceOnSquare = this.chessBoard.board[f][r].getPiece();
-    // if (pieceOnSquare == null) {
-    //   return;
-    // }
-    //PIECE PICKED up
+    if (pieceOnSquare === undefined) {
+      return;
+    }
+    //PIECE PICKED UP
     console.log(pieceOnSquare);
   }
 

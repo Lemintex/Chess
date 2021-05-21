@@ -11,8 +11,9 @@ function preload(){
 function setup() {
   chessBoard = new ChessBoard(squareSize);
   pieceController = new PieceController(spriteSheet, squareSize, chessBoard);
+  var fen = new PositionFromFEN('kKnN2pP/8/kkK', 8, 8, pieceController);
   createCanvas(squareSize*8, squareSize*8);
-  pieceController.generatePieces();
+  // pieceController.generatePieces();
 }
 
 function draw() {
