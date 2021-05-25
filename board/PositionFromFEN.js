@@ -49,10 +49,10 @@ class PositionFromFEN {
         this.pieceController.generateKing(f, r, isWhite);
         break;
       case 'q':
-        this.pieceController.generateQueen();
+        this.pieceController.generateQueen(f, r, isWhite);
         break;
       case 'b':
-        this.pieceController.generateBishop();
+        this.pieceController.generateBishop(f, r, isWhite);
         break;
       case 'n':
         this.pieceController.generateKnight(f, r, isWhite);

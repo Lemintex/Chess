@@ -26,15 +26,17 @@ class PieceController {
       var k = new King(this.pieceSprites[0], isWhite, this.squareSize, this.chessBoard.board[file-1][rank-1]);
       this.pieceArray.push(k);
   }
-  //
-  // generateQueen(){
-  //   var q = new Queen
-  // }
-  //
-  // generateBishop(){
-  //   var b = new Bishop
-  // }
-  //
+
+  generateQueen(file, rank, isWhite){
+    var q = new Queen(this.pieceSprites[1], isWhite, this.squareSize, this.chessBoard.board[file-1][rank-1]);
+    this.pieceArray.push(q);
+  }
+
+  generateBishop(file, rank, isWhite){
+    var b = new Bishop(this.pieceSprites[2], isWhite, this.squareSize, this.chessBoard.board[file-1][rank-1])
+    this.pieceArray.push(b);
+  }
+
   generateKnight(file, rank, isWhite){
     var n = new Knight(this.pieceSprites[3], isWhite, this.squareSize, this.chessBoard.board[file-1][rank-1]);
     this.pieceArray.push(n);
