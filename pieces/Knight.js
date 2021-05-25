@@ -1,5 +1,5 @@
 class Knight extends Piece {
-  constructor(sprite, file, rank, isWhite, size, square) {
-    super(sprite, file, rank, isWhite, size, square);
+  constructor(sprite, isWhite, size, square) {
+    super(sprite, isWhite, size, square);
   }
 }

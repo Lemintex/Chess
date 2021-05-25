@@ -1,5 +1,5 @@
 class Piece {
-  constructor(sprite, file, rank, isWhite, pieceSize, square) {
+  constructor(sprite, isWhite, pieceSize, square) {
     this.pieceSize = pieceSize;
     if (isWhite) {
       this.sprite = sprite[0];
@@ -9,8 +9,8 @@ class Piece {
     }
     this.square = square;
     this.pos = {
-      file: file,
-      rank: rank
+      file: this.square.getFile(),
+      rank: this.square.getRank()
     };
     this.isWhite = isWhite;
     this.isHeld = false;

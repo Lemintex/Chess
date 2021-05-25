@@ -23,7 +23,7 @@ class PieceController {
   }
 
   generateKing(file, rank, isWhite){
-      var k = new King(this.pieceSprites[0], file, rank, isWhite, this.squareSize, this.chessBoard.board[file][rank]);
+      var k = new King(this.pieceSprites[0], isWhite, this.squareSize, this.chessBoard.board[file-1][rank-1]);
       this.pieceArray.push(k);
   }
   //
@@ -36,17 +36,17 @@ class PieceController {
   // }
   //
   generateKnight(file, rank, isWhite){
-    var n = new Knight(this.pieceSprites[3], file, rank, isWhite, this.squareSize, this.chessBoard.board[file][rank]);
+    var n = new Knight(this.pieceSprites[3], isWhite, this.squareSize, this.chessBoard.board[file-1][rank-1]);
     this.pieceArray.push(n);
   }
 
   generateRook(file, rank, isWhite){
-    var r = new Rook(this.pieceSprites[4], file, rank, isWhite, this.squareSize, this.chessBoard.board[file][rank]);
+    var r = new Rook(this.pieceSprites[4], isWhite, this.squareSize, this.chessBoard.board[file-1][rank-1]);
     this.pieceArray.push(r);
   }
 
   generatePawn(file, rank, isWhite){
-    var p = new Pawn(this.pieceSprites[5], file, rank, isWhite, this.squareSize, this.chessBoard.board[file][rank]);
+    var p = new Pawn(this.pieceSprites[5], isWhite, this.squareSize, this.chessBoard.board[file-1][rank-1]);
     this.pieceArray.push(p);
   }
 

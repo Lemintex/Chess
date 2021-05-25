@@ -7,7 +7,7 @@ class ChessBoard{
     for (var f = 0; f < this.fileNum; f++) {
       this.board[f] = new Array(this.rankNum);
       for (var r = 0; r < this.rankNum; r++) {
-        this.board[f][r] = new Square(f*this.squareSize, r*this.squareSize, (r+f)%2==0, this.squareSize);
+        this.board[f][r] = new Square(f, r, (r+f)%2==0, this.squareSize);
       }
     }
   }

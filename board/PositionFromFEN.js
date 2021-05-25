@@ -14,7 +14,7 @@ class PositionFromFEN {
       var char = this.fenString[i];
               console.log(char);
       if (!isNaN(parseInt(char))) {
-        if (parseInt(char) + f <= 8) {
+        if (parseInt(char) + f <= 9) {
           f += parseInt(char);
           console.log("Skipping " + char + " files on Rank " + r);
         }
@@ -29,7 +29,7 @@ class PositionFromFEN {
       else{
         var isWhite = this.isWhite(char);
         this.generatePiece(char, f, r, isWhite);
-        console.log("Adding Piece to Rank " + r + ", File: " + f);
+        console.log("Adding Piece: "+ char + " to Rank " + r + ", File: " + f);
         f+=1;
       }
     }
