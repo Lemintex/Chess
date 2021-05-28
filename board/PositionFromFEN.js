@@ -8,30 +8,45 @@ class PositionFromFEN {
   }
 
   generatePosition(){
-    var f = 1;
-    var r = 1;
+    this.f = 1;
+    this.r = 1;
+    var part = 1;
     for (var i = 0; i < this.fenString.length; i++) {
       var char = this.fenString[i];
-              console.log(char);
-      if (!isNaN(parseInt(char))) {
-        if (parseInt(char) + f <= 9) {
-          f += parseInt(char);
-          console.log("Skipping " + char + " files on Rank " + r);
-        }
-        else {
-          return;
-        }
+      console.log(char);
+      switch (part) {
+        case 1:
+          this.charFirstPart(char);
+          break;
+        case 2:
+
+        break;
+        default:
+
       }
-      else if (this.isEndOfRank(char)) {
-        r+=1;
-        f=1;
+
+    }
+  }
+
+  charFirstPart(char){
+    if (!isNaN(parseInt(char))) {
+      if (parseInt(char) + this.f <= 9) {
+        this.f += parseInt(char);
+        console.log("Skipping " + char + " files on Rank " + this.r);
       }
-      else{
-        var isWhite = this.isWhite(char);
-        this.generatePiece(char, f, r, isWhite);
-        console.log("Adding Piece: "+ char + " to Rank " + r + ", File: " + f);
-        f+=1;
+      else {
+        return;
       }
+    }
+    else if (this.isEndOfRank(char)) {
+      this.r+=1;
+      this.f=1;
+    }
+    else{
+      var isWhite = this.isWhite(char);
+      this.generatePiece(char, this.f, this.r, isWhite);
+      console.log("Adding Piece: "+ char + " to Rank " + this.r + ", File: " + this.f);
+      this.f+=1;
     }
   }
 
