@@ -12,12 +12,19 @@ class Piece {
       file: this.square.getFile(),
       rank: this.square.getRank()
     };
+    this.x = (this.pos.file-1)*this.pieceSize;
+    this.y = (this.pos.rank-1)*this.pieceSize;
     this.isWhite = isWhite;
     this.isHeld = false;
     this.square.setPiece(this);
   }
 
   drawPiece(){
-    image(this.sprite, (this.pos.file-1)*this.pieceSize, (this.pos.rank-1)*this.pieceSize, this.pieceSize, this.pieceSize);
+    image(this.sprite, this.x, this.y, this.pieceSize, this.pieceSize);
+  }
+
+  setPos(x, y){
+    this.x = x;
+    this.y = y;
   }
 }

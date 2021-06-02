@@ -13,14 +13,19 @@ class PositionFromFEN {
     var part = 1;
     for (var i = 0; i < this.fenString.length; i++) {
       var char = this.fenString[i];
-      console.log(char);
+      // console.log(char);
       switch (part) {
         case 1:
           this.charFirstPart(char);
           break;
         case 2:
-
-        break;
+          break;
+        case 3:
+          break;
+        case 4:
+          break;
+        case 5:
+          break;
         default:
 
       }
@@ -32,7 +37,7 @@ class PositionFromFEN {
     if (!isNaN(parseInt(char))) {
       if (parseInt(char) + this.f <= 9) {
         this.f += parseInt(char);
-        console.log("Skipping " + char + " files on Rank " + this.r);
+        // console.log("Skipping " + char + " files on Rank " + this.r);
       }
       else {
         return;
@@ -45,11 +50,26 @@ class PositionFromFEN {
     else{
       var isWhite = this.isWhite(char);
       this.generatePiece(char, this.f, this.r, isWhite);
-      console.log("Adding Piece: "+ char + " to Rank " + this.r + ", File: " + this.f);
+      // console.log("Adding Piece: "+ char + " to Rank " + this.r + ", File: " + this.f);
       this.f+=1;
     }
   }
 
+  charSecondPart(char){
+    //TODO detect whose turn it is
+  }
+  charThirdPart(char){
+    //TODO detect castling availability
+  }
+  charFourthPart(char){
+    //TODO detect en passant target
+  }
+  charFifthPart(char){
+    //TODO detect 50 move rule moves
+  }
+  charSixthPart(char){
+    //TODO move count
+  }
   isEndOfRank(char){
     return char == '/';
   }

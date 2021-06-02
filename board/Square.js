@@ -23,6 +23,10 @@ class Square{
     this.pieceOnSquare = piece;
   }
 
+  adjustPiece(piece){
+      piece.setPos(this.x, this.y);
+  }
+
   getPiece(){
     return this.pieceOnSquare;
   }
@@ -34,4 +38,5 @@ class Square{
   getRank(){
     return this.rank;
   }
+
 }

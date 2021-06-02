@@ -5,6 +5,8 @@ class PieceController {
     this.spriteSheet = spriteSheet;
     this.pieceSprites = [];
     this.pieceArray = [];
+    this.pieceInHand;
+    this.isPieceInHand = false;
     for (var i = 0; i < 6; i++) {
       this.pieceSprites[i] = [];
       for (var j = 0; j < 2; j++) {
@@ -61,10 +63,28 @@ class PieceController {
       return;
     }
     //PIECE PICKED UP
-    console.log(pieceOnSquare);
+    this.chessBoard.board[f][r].setPiece(undefined);
+    this.pieceInHand = pieceOnSquare;
+    this.isPieceInHand = true;
+  }
+
+  mouseReleased(mouseX, mouseY){
+    if (!this.isPieceInHand) {
+      return;
+    }
+    var f = Math.floor(mouseX/this.squareSize);
+    var r = Math.floor(mouseY/this.squareSize);
+    this.chessBoard.board[f][r].setPiece(this.pieceInHand);
+    this.chessBoard.board[f][r].adjustPiece(this.pieceInHand);
+    this.pieceInHand = undefined;
+    this.isPieceInHand = false;
+
   }
 
   drawPieces(){
+    if (this.isPieceInHand) {
+      this.pieceInHand.setPos(mouseX-this.pieceInHand.pieceSize/2, mouseY-this.pieceInHand.pieceSize/2);
+    }
     for (var i = 0; i < this.pieceArray.length; i++) {
       this.pieceArray[i].drawPiece();
     }
