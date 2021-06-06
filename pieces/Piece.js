@@ -27,4 +27,8 @@ class Piece {
     this.x = x;
     this.y = y;
   }
+
+  setSquare(sq){
+    this.square = sq;
+  }
 }

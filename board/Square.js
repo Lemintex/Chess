@@ -21,6 +21,9 @@ class Square{
 
   setPiece(piece){
     this.pieceOnSquare = piece;
+    if (piece!=undefined){
+      this.pieceOnSquare.setSquare(this);
+    }
   }
 
   adjustPiece(piece){
