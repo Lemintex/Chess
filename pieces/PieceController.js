@@ -64,10 +64,15 @@ class PieceController {
   mouseReleased(mouseX, mouseY){
     var f = Math.floor(mouseX/this.squareSize);
     var r = Math.floor(mouseY/this.squareSize);
+    //IF USER HAS NO PIECE IN THEIR HAND
+    if (!this.isPieceInHand){
+      return;
+    }
     //IF THE MOVE IS INVALID, PUT THE PIECE BACK ON ITS INITIAL SQUARE
-    if (!this.isPieceInHand || !this.pieceInHand.isValidMove(this.chessBoard.square[f][r])) {
+    if (!this.pieceInHand.isValidMove(this.chessBoard.square[f][r])) {
       this.chessBoard.square[this.piecePickedPos.f][this.piecePickedPos.r].adjustPiece(this.pieceInHand);
       this.isPieceInHand = false;
+      this.pieceInHand = undefined;
       return;
     }
     this.chessBoard.square[this.piecePickedPos.f][this.piecePickedPos.r].setPiece(undefined);
