@@ -4,11 +4,9 @@ class King extends Piece {
   }
 
   isValidMove(sq){
-    if((-1 <= sq.getFile() - this.square.getFile() && sq.getFile() - this.square.getFile() <= 1) && (-1 <= sq.getRank() - this.square.getRank() && sq.getRank() - this.square.getRank() <= 1)){
+    if(Math.abs(sq.getFile() - this.square.getFile())<= 1 && Math.abs(sq.getRank() - this.square.getRank()) <=1){
         return true;
     }
-    else {
-      return false;
-    }
+    return false;
   }
 }

@@ -20,40 +20,39 @@ class PieceController {
   }
 
   generateKing(file, rank, isWhite){
-      var k = new King(this.pieceSprites[0], isWhite, this.squareSize, this.chessBoard.board[file-1][rank-1]);
+      var k = new King(this.pieceSprites[0], isWhite, this.squareSize, this.chessBoard.square[file-1][rank-1]);
       this.pieceArray.push(k);
   }
 
   generateQueen(file, rank, isWhite){
-    var q = new Queen(this.pieceSprites[1], isWhite, this.squareSize, this.chessBoard.board[file-1][rank-1]);
+    var q = new Queen(this.pieceSprites[1], isWhite, this.squareSize, this.chessBoard.square[file-1][rank-1]);
     this.pieceArray.push(q);
   }
 
   generateBishop(file, rank, isWhite){
-    var b = new Bishop(this.pieceSprites[2], isWhite, this.squareSize, this.chessBoard.board[file-1][rank-1])
+    var b = new Bishop(this.pieceSprites[2], isWhite, this.squareSize, this.chessBoard.square[file-1][rank-1])
     this.pieceArray.push(b);
   }
 
   generateKnight(file, rank, isWhite){
-    var n = new Knight(this.pieceSprites[3], isWhite, this.squareSize, this.chessBoard.board[file-1][rank-1]);
+    var n = new Knight(this.pieceSprites[3], isWhite, this.squareSize, this.chessBoard.square[file-1][rank-1]);
     this.pieceArray.push(n);
   }
 
   generateRook(file, rank, isWhite){
-    var r = new Rook(this.pieceSprites[4], isWhite, this.squareSize, this.chessBoard.board[file-1][rank-1]);
+    var r = new Rook(this.pieceSprites[4], isWhite, this.squareSize, this.chessBoard.square[file-1][rank-1]);
     this.pieceArray.push(r);
   }
 
   generatePawn(file, rank, isWhite){
-    var p = new Pawn(this.pieceSprites[5], isWhite, this.squareSize, this.chessBoard.board[file-1][rank-1]);
+    var p = new Pawn(this.pieceSprites[5], isWhite, this.squareSize, this.chessBoard.square[file-1][rank-1]);
     this.pieceArray.push(p);
   }
 
   mousePressed(mouseX, mouseY){
     this.piecePickedPos.f = Math.floor(mouseX/this.squareSize);
     this.piecePickedPos.r = Math.floor(mouseY/this.squareSize);
-
-    var pieceOnSquare = this.chessBoard.board[this.piecePickedPos.f][this.piecePickedPos.r].getPiece();
+    var pieceOnSquare = this.chessBoard.square[this.piecePickedPos.f][this.piecePickedPos.r].getPiece();
     if (pieceOnSquare === undefined) {
       return;
     }
@@ -65,15 +64,15 @@ class PieceController {
   mouseReleased(mouseX, mouseY){
     var f = Math.floor(mouseX/this.squareSize);
     var r = Math.floor(mouseY/this.squareSize);
-    if (!this.isPieceInHand || !this.pieceInHand.isValidMove(this.chessBoard.board[f][r])) {
-      this.chessBoard.board[this.piecePickedPos.f][this.piecePickedPos.r].adjustPiece(this.pieceInHand);
+    //IF THE MOVE IS INVALID, PUT THE PIECE BACK ON ITS INITIAL SQUARE
+    if (!this.isPieceInHand || !this.pieceInHand.isValidMove(this.chessBoard.square[f][r])) {
+      this.chessBoard.square[this.piecePickedPos.f][this.piecePickedPos.r].adjustPiece(this.pieceInHand);
       this.isPieceInHand = false;
       return;
     }
-    console.log("HI");
-    this.chessBoard.board[this.piecePickedPos.f][this.piecePickedPos.r].setPiece(undefined);
-    this.chessBoard.board[f][r].setPiece(this.pieceInHand);
-    this.chessBoard.board[f][r].adjustPiece(this.pieceInHand);
+    this.chessBoard.square[this.piecePickedPos.f][this.piecePickedPos.r].setPiece(undefined);
+    this.chessBoard.square[f][r].setPiece(this.pieceInHand);
+    this.chessBoard.square[f][r].adjustPiece(this.pieceInHand);
     this.pieceInHand = undefined;
     this.isPieceInHand = false;
   }
