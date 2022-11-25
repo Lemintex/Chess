@@ -1,10 +1,10 @@
 class Square{
   constructor(file, rank, light, squareSize) {
     this.size = squareSize;
-    this.x = file*squareSize;
-    this.y = rank*squareSize;
-    this.file = file + 1;
-    this.rank = rank + 1;
+    this.x = file * squareSize;
+    this.y = rank * squareSize;
+    this.file = file;
+    this.rank = rank;
     this.isLight = light;
     this.pieceOnSquare;
   }

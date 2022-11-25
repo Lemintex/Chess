@@ -8,8 +8,8 @@ class PositionFromFEN {
   }
 
   generatePosition(){
-    this.f = 1;
-    this.r = 1;
+    this.f = 0;
+    this.r = 0;
     var part = 1;
     for (var i = 0; i < this.fenString.length; i++) {
       var char = this.fenString[i];
@@ -35,7 +35,7 @@ class PositionFromFEN {
 
   charFirstPart(char){
     if (!isNaN(parseInt(char))) {
-      if (parseInt(char) + this.f <= 9) {
+      if (parseInt(char) + this.f <= 8) {
         this.f += parseInt(char);
         // console.log("Skipping " + char + " files on Rank " + this.r);
       }
@@ -45,7 +45,7 @@ class PositionFromFEN {
     }
     else if (this.isEndOfRank(char)) {
       this.r+=1;
-      this.f=1;
+      this.f=0;
     }
     else{
       var isWhite = this.isWhite(char);

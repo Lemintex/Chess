@@ -1,8 +1,8 @@
-var squareSize = 80;
+let squareSize = 80;
 
-var board;
-var pieceController;
-var spriteSheet;
+let board;
+let pieceController;
+let spriteSheet;
 
 function preload(){
   spriteSheet = loadImage('pieces/pieces.png');
