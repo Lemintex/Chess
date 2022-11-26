@@ -1,7 +1,7 @@
 let squareSize = 80;
 
 let board;
-let pieceController;
+let controller;
 let spriteSheet;
 
 function preload(){
@@ -10,8 +10,8 @@ function preload(){
 
 function setup() {
   chessBoard = new ChessBoard(squareSize);
-  pieceController = new PieceController(spriteSheet, squareSize, chessBoard);
-  var fen = new PositionFromFEN('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR', 8, 8, pieceController);
+  controller = new Controller(spriteSheet, squareSize, chessBoard);
+  var fen = new PositionFromFEN('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR', 8, 8, controller);
   createCanvas(squareSize*8, squareSize*8);
   // pieceController.generatePieces();
 }
@@ -19,13 +19,13 @@ function setup() {
 function draw() {
   background(0);
   chessBoard.drawBoard();
-  pieceController.drawPieces();
+  controller.drawPieces();
 }
 
 function mousePressed(){
-  pieceController.mousePressed(mouseX, mouseY);
+  controller.mousePressed(mouseX, mouseY);
 }
 
 function mouseReleased(){
-  pieceController.mouseReleased(mouseX, mouseY);
+  controller.mouseReleased(mouseX, mouseY);
 }
