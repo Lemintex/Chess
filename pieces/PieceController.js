@@ -11,6 +11,18 @@ class PieceController {
       f: 0,
       r: 0
     };
+    this.castlingRights = {
+      white: {
+        kingside: false,
+        queenside: false
+      },
+      black: {
+        kingside: false,
+        queenside: false
+      }
+    };
+    this.isWhiteToMove = true;
+    this.moveCount = 0;
     for (var i = 0; i < 6; i++) {
       this.pieceSprites[i] = [];
       for (var j = 0; j < 2; j++) {
@@ -71,13 +83,14 @@ class PieceController {
     }
 
     // if the move is invalid, put it back where it came from
-    if (!this.pieceInHand.isValidMove(this.chessBoard.square[f][r])) {
+    if (!this.pieceInHand.isValidMove(this.chessBoard.square[f][r]) || this.isWhiteToMove !== this.pieceInHand.isWhite) {
       this.chessBoard.square[this.piecePickedPos.f][this.piecePickedPos.r].adjustPiece(this.pieceInHand);
       this.isPieceInHand = false;
       this.pieceInHand = undefined;
       return;
     }
 
+    this.isWhiteToMove = !this.isWhiteToMove;
     this.chessBoard.square[this.piecePickedPos.f][this.piecePickedPos.r].setPiece(undefined);
     this.chessBoard.square[f][r].setPiece(this.pieceInHand);
     this.chessBoard.square[f][r].adjustPiece(this.pieceInHand);
