@@ -22,6 +22,11 @@ class PieceController {
       }
     };
     this.isWhiteToMove = true;
+    this.enPassantTarget = {
+      file,
+      rank
+    };
+    this.movesUntilFiftyMoveRule = 50;
     this.moveCount = 0;
     for (var i = 0; i < 6; i++) {
       this.pieceSprites[i] = [];
@@ -90,6 +95,7 @@ class PieceController {
       return;
     }
 
+    // make move
     this.isWhiteToMove = !this.isWhiteToMove;
     this.chessBoard.square[this.piecePickedPos.f][this.piecePickedPos.r].setPiece(undefined);
     this.chessBoard.square[f][r].setPiece(this.pieceInHand);

@@ -31,7 +31,6 @@ class PositionFromFEN {
           break;
 
         case FIELDS.TURN_TO_MOVE:
-          ///TODO: set controller
           this.isWhiteToMove(c);
           break;
 
@@ -87,7 +86,9 @@ class PositionFromFEN {
   }
 
   getEnPassantTarget(c){
-    //TODO detect en passant target
+    if (c === '-') return;
+    // if (c >= '1' && c <= '8') this.controller.enPassantTarget.file = parseInt(c);
+    // else if (c >= 'a' && c <= 'h') thiis.controller.enPassantTarget.file
   }
 
   getHalfMoveClock(c){
