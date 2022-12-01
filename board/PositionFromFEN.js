@@ -12,7 +12,6 @@ class PositionFromFEN {
     this.r = 0;
     var part = 1;
     for (let c of this.fenString) {
-      // console.log(char);
       switch (part) {
         case 1:
           this.charFirstPart(c);
