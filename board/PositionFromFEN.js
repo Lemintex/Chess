@@ -1,29 +1,53 @@
+const FIELDS = {
+  POSITION: 0,
+  TURN_TO_MOVE: 1,
+  CASTLING_RIGHTS: 2,
+  EN_PASSANT: 3,
+  HALFMOVE_CLOCK: 4,
+  MOVE_COUNT: 5
+};
 class PositionFromFEN {
   constructor(fen, files, ranks, pieceController) {
     this.fenString = fen;
     this.files = files;
     this.ranks = ranks;
-    this.pieceController = pieceController;
+    this.controller = pieceController;
     this.generatePosition();
   }
 
   generatePosition(){
     this.f = 0;
     this.r = 0;
-    var part = 1;
+    var part =  FIELDS.POSITION;
     for (let c of this.fenString) {
+      if (c === ' ') {
+        part++;
+        continue;
+      }
+
       switch (part) {
-        case 1:
-          this.charFirstPart(c);
+        case FIELDS.POSITION:
+          this.piecePosition(c);
           break;
-        case 2:
+
+        case FIELDS.TURN_TO_MOVE:
+          this.isWhiteToMove(c);
           break;
-        case 3:
+
+        case FIELDS.CASTLING_RIGHTS:
+          this.getCastlingRights(c);
           break;
-        case 4:
+
+        case FIELDS.EN_PASSANT:
           break;
-        case 5:
+
+        case FIELDS.HALFMOVE_CLOCK:
           break;
+
+        case FIELDS.MOVE_COUNT:
+          this.controller.moveCount = parseInt(c);
+          break;
+
         default:
 
       }
@@ -31,7 +55,7 @@ class PositionFromFEN {
     }
   }
 
-  charFirstPart(c){
+  piecePosition(c){
     if (!isNaN(parseInt(c))) {
       if (parseInt(c) + this.f <= 8) {
         this.f += parseInt(c);
@@ -42,7 +66,7 @@ class PositionFromFEN {
       this.r++;
       this.f = 0;
     }
-    else{
+    else {
       var isWhite = this.isWhite(c);
       this.generatePiece(c, this.f, this.r, isWhite);
       // console.log("Adding Piece: "+ char + " to Rank " + this.r + ", File: " + this.f);
@@ -50,54 +74,65 @@ class PositionFromFEN {
     }
   }
 
-  charSecondPart(char){
-    //TODO detect whose turn it is
+  isWhiteToMove(c){
+    this.controller.iswhiteToMove = (c === 'w');
   }
 
-  charThirdPart(char){
-    //TODO detect castling availability
+  getCastlingRights(c){
+    if (c === 'k') this.controller.castlingRights.white.kingside = true;
+    else if (c === 'q') this.controller.castlingRights.white.queenside = true;
+    else if (c === 'K') this.controller.castlingRights.black.kingside = true;
+    else if (c === 'Q') this.controller.castlingRights.black.queenside = true;
   }
 
-  charFourthPart(char){
-    //TODO detect en passant target
+  getEnPassantTarget(c){
+    if (c === '-') return;
+    // if (c >= '1' && c <= '8') this.controller.enPassantTarget.file = parseInt(c);
+    // else if (c >= 'a' && c <= 'h') thiis.controller.enPassantTarget.file
   }
 
-  charFifthPart(char){
+  getHalfMoveClock(c){
     //TODO detect 50 move rule moves
   }
   
-  charSixthPart(char){
+  getMoveCount(c){
     //TODO move count
   }
 
-  isEndOfRank(char){
-    return char == '/';
+  isEndOfRank(c){
+    return c == '/';
   }
 
-  isWhite(char){
-    return char === char.toUpperCase();
+  isWhite(c){
+    return c === c.toUpperCase();
   }
 
-  generatePiece(char, f, r, isWhite){
-    switch (char.toLowerCase()) {
+  generatePiece(c, f, r, isWhite){
+    switch (c.toLowerCase()) {
       case 'k':
-        this.pieceController.generateKing(f, r, isWhite);
+        this.controller.generateKing(f, r, isWhite);
         break;
+
       case 'q':
-        this.pieceController.generateQueen(f, r, isWhite);
+        this.controller.generateQueen(f, r, isWhite);
         break;
+
       case 'b':
-        this.pieceController.generateBishop(f, r, isWhite);
+        this.controller.generateBishop(f, r, isWhite);
         break;
+        
       case 'n':
-        this.pieceController.generateKnight(f, r, isWhite);
+        this.controller.generateKnight(f, r, isWhite);
         break;
+
       case 'r':
-        this.pieceController.generateRook(f, r, isWhite);
+        this.controller.generateRook(f, r, isWhite);
         break;
+
       case 'p':
-        this.pieceController.generatePawn(f, r, isWhite);
+        this.controller.generatePawn(f, r, isWhite);
         break;
+
       default:
         break;
     }
