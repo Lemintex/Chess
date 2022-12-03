@@ -59,7 +59,6 @@ class PositionFromFEN {
     if (!isNaN(parseInt(c))) {
       if (parseInt(c) + this.f <= 8) {
         this.f += parseInt(c);
-        // console.log("Skipping " + char + " files on Rank " + this.r);
       }
     }
     else if (this.isEndOfRank(c)) {
